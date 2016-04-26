@@ -1,0 +1,23 @@
+{
+  "name": "pecaran",
+  "version": "1.0.0",
+  "description": "ぺか欄",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shule517/pecaran.git"
+  },
+  "author": "shule517",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shule517/pecaran/issues"
+  },
+  "homepage": "https://github.com/shule517/pecaran#readme",
+  "devDependencies": {
+    "cheerio-httpcli": "^0.6.8",
+    "express": "^4.13.4"
+  }
+}

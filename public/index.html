@@ -1,3 +1,23 @@
-<html>
-    あいうえお
+<!DOCTYPE html>
+<html lang="ja" ng-app>
+  <head>
+    <meta charset="UTF-8">
+    <title>Angularのテスト！</title>
+    <script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <h1>test</h1>
+    <input type="text" ng-model="name.name">
+    <p>こんにちは！{{name}}</p>
+    <p>こんにちは！{{1+2+3+4+5+6+7+8+9+10}}</p>
+    <div ng-controller="mainCtrl">
+      <p>{{users.length}} users.</p>
+      <ul>
+        <li ng-repeat="user in users|orderBy:'-score'|filter:name">
+          {{user.name}} : {{user.score|number}}
+        </li>
+      </ul>
+    </div>
+  </body>
 </html>

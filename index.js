@@ -1,12 +1,12 @@
 var express = require('express')
     app = express(),
-    channel = require('./channel');
+    api = require('./channel');
 
 app.use(express.static(__dirname + '/public'));
 app.listen(3000);
 console.log('server starting');
 
-indexText = channel.readYp();
+//indexText = channel.readYp();
 
 
 
@@ -15,15 +15,14 @@ indexText = channel.readYp();
 // var express = require('express'),
 //   app = express(),
 //   api = require('./api/api');
-
 //   // app.use(app.router);
 //   app.use(express.static(__dirname + '/public'));
-//   app.get('/api/users', api.users);
-//   app.get('/api/images', api.images);
 
+app.get('/api/channels', api.channels);
+
+//   app.get('/api/images', api.images);
 //   app.listen(3000);
 //   console.log('server starting');
-
 // // app.set('views', __dirname + '/views');
 // // app.set('view engine', 'ejs');
 

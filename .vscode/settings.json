@@ -1,0 +1,11 @@
+// 既定の設定とユーザー設定を上書きするには、このファイル内に設定を挿入します
+{
+	// エディターで空白文字を表示するかどうかを制御します
+	"editor.renderWhitespace": true,
+
+	// Tab キーを押すとスペースが挿入されます。
+	"editor.insertSpaces": false,
+
+	// タブ 1 つに相当するスペースの数。
+	"editor.tabSize": 2
+}

@@ -21,7 +21,8 @@ function readYp(res) {
                 contactUrl:elements[3],
                 genre:elements[4],
                 details:elements[5],
-                comments:elements[17]
+                comments:elements[17],
+                icon:'http://pbs.twimg.com/profile_images/744418862/PeerstPlayer_Icon.png'
             };
 
             channels.push(channel);

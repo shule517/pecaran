@@ -1,23 +1,29 @@
-<!DOCTYPE html>
-<html lang="ja" ng-app>
+<html lang="ja" ng-app="MyApp">
   <head>
-    <meta charset="UTF-8">
-    <title>Angularのテスト！</title>
-    <script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
     <script src="main.js"></script>
+    <script language="javascript">
+      angular.module("MyApp", ["ui.bootstrap"]);
+    </script>
   </head>
   <body>
-    <h1>test</h1>
-    <input type="text" ng-model="name.name">
-    <p>こんにちは！{{name}}</p>
-    <p>こんにちは！{{1+2+3+4+5+6+7+8+9+10}}</p>
-    <div ng-controller="mainCtrl">
-      <p>{{users.length}} users.</p>
-      <ul>
-        <li ng-repeat="user in users|orderBy:'-score'|filter:name">
-          {{user.name}} : {{user.score|number}}
-        </li>
-      </ul>
-    </div>
+    <section class="container">
+      <h1>Peca欄</h1>
+      <input type="text" ng-model="name.name">
+      <div class="row"  ng-controller="mainCtrl">
+        <p>{{channels.length}} channels.</p>
+        <div class="col-md-1" ng-repeat="channels in channels|orderBy:'-score'|filter:name">
+          <a href="#" class="thumbnail">
+            <img src="{{channels.icon}}">
+            {{channels.name}}
+          </a>
+        </div>
+      </div>
+    </section>
   </body>
 </html>

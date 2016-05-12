@@ -17,8 +17,8 @@
       <input type="text" ng-model="name.name">
       <div class="row"  ng-controller="mainCtrl">
         <p>{{channels.length}} channels.</p>
-        <div class="col-md-1" ng-repeat="channels in channels|orderBy:'-score'|filter:name">
-          <a href="#" class="thumbnail">
+        <div class="col-md-2" height="200px" ng-repeat="channels in channels|orderBy:'-score'|filter:name">
+          <a href="{{channels.contactUrl}}" class="thumbnail">
             <img src="{{channels.icon}}">
             {{channels.name}}
           </a>

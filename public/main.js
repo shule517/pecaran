@@ -8,5 +8,4 @@ var mainCtrl = function($scope, $http) {
     .error(function(data, status, headers, config){
       console.log(status);
     });
-
 }

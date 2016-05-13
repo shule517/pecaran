@@ -6,28 +6,28 @@ exports.channels = function(req, res){
 
     var channelText = "";
 
-    // var sp = getHtml('http://bayonet.ddo.jp/sp//index.txt').
-    // then(function($){
-    //     channelText += $.html();
-    // });
-
-    // var tp = getHtml('http://temp.orz.hm/yp/index.txt').
-    // then(function($){
-    //     channelText += $.html();
-    // });
-
-    // Promise.all([sp, tp]).then(function(values){
-    //     readYp(res, channelText);
-    // });
-
-    var sample = getHtml('http://localhost:3000/index.txt')
-    .then(function($){
+    var sp = getHtml('http://bayonet.ddo.jp/sp//index.txt').
+    then(function($){
         channelText += $.html();
     });
 
-    Promise.all([sample]).then(function(values){
+    var tp = getHtml('http://temp.orz.hm/yp/index.txt').
+    then(function($){
+        channelText += $.html();
+    });
+
+    Promise.all([sp, tp]).then(function(values){
         readYp(res, channelText);
     });
+
+    // var sample = getHtml('http://localhost:3000/index.txt')
+    // .then(function($){
+    //     channelText += $.html();
+    // });
+
+    // Promise.all([sample]).then(function(values){
+    //     readYp(res, channelText);
+    // });
 };
 
 function readYp(res, channelText) {

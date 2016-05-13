@@ -1,5 +1,6 @@
 "use strict";
 
+require('es6-promise').polyfill();
 var httpClient = require('cheerio-httpcli');
 
 exports.channels = function(req, res){

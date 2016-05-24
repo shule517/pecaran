@@ -48,7 +48,7 @@ function readYp(res, channelText) {
             id:elements[1],
             contactUrl:elements[3],
             genre:elements[4],
-            details:elements[5],
+            details:elements[5].replace("<Open>", "").replace(" - ", "").replace("<Free>", ""),
             comments:elements[17],
             icon:''
         };
@@ -302,6 +302,12 @@ function getImageUrl(url, channel) {
     
     var wikiUrl = "http://wikiwiki.jp/peercast/?" + EscapeEUCJP("配信者情報/" + channel.name);
 
+    var channelNameNoCh = channel.name.replace(/ch/g, "");
+    channelNameNoCh = channelNameNoCh.replace(/ｃｈ/g, "");
+    var wikiUrlNoch = "http://wikiwiki.jp/peercast/?" + EscapeEUCJP("配信者情報/" + channelNameNoCh);
+
+    channel.contactUrl = wikiUrlNoch;
+    
     //　URLの作成
     var index = url.indexOf('http://jbbs.shitaraba.net/');
     var index2 = url.indexOf('http://jbbs.livedoor.jp/');
@@ -323,7 +329,7 @@ function getImageUrl(url, channel) {
             bbsTopUrl = 'http://jbbs.shitaraba.net/' + genre + '/' + board + '/';
             bbsLocalRuleUrl = 'http://jbbs.shitaraba.net/' + genre + '/' + board + '/head.txt';
         }
-    } else     if (index2 != -1) {
+    } else if (index2 != -1) {
         index = url.indexOf('http://jbbs.livedoor.jp/bbs/read.cgi/');
         if (index != -1) {
             var elem = url.split('/');
@@ -341,8 +347,10 @@ function getImageUrl(url, channel) {
             bbsLocalRuleUrl = 'http://jbbs.shitaraba.net/' + genre + '/' + board + '/head.txt';
         }
     } else {
+        /*
         // デバッグ
         channel.name += ":url ×";
+        */
     }
 
     var index = url.indexOf('http://jbbs.shitaraba.net/bbs/read.cgi/');
@@ -359,25 +367,29 @@ function getImageUrl(url, channel) {
     .then(function($bbs){
         if (channel.icon == "" && $bbs !== undefined) {
             channel.icon = getImageUrlBBSLocal($bbs);
+            /*
             // デバッグ
             if (channel.icon != "") {
                 channel.name += ":local ○";
             } else {
                 channel.name += ":local ×";
             }
+            */
         }
         return getHtml(bbsTopUrl);
     })
     // 掲示板Top絵の取得
     .then(function($bbs){
         if (channel.icon == "" && $bbs !== undefined) {
-            channel.icon = getImageUrlBBSTop($bbs);
+            // channel.icon = getImageUrlBBSTop($bbs);
+            /*
             // デバッグ
             if (channel.icon != "") {
                 channel.name += ":top ○";
             } else {
                 channel.name += ":top ×";
             }
+            */
         }
         return getHtml(bbsResUrl);
     })
@@ -385,12 +397,14 @@ function getImageUrl(url, channel) {
     .then(function($bbs){
         if (channel.icon == "" && $bbs !== undefined) {
             channel.icon = getImageUrlBBSTop($bbs);
+            /*
             // デバッグ
             if (channel.icon != "") {
                 channel.name += ":res ○";
             } else {
                 channel.name += ":res ×";
             }
+            */
         }
         return getHtml(wikiUrl);
     })
@@ -398,12 +412,29 @@ function getImageUrl(url, channel) {
     .then(function($wiki){
         if (channel.icon == "" && $wiki !== undefined) {
             channel.icon = getImageUrlWiki($wiki);
+            /*
             // デバッグ
             if (channel.icon != "") {
                 channel.name += ":wiki ○";
             } else {
                 channel.name += ":wiki ×";
             }
+            */
+        }
+        return getHtml(wikiUrlNoch);
+    })
+    // 配信者wikiの取得
+    .then(function($wiki){
+        if (channel.icon == "" && $wiki !== undefined) {
+            channel.icon = getImageUrlWiki($wiki);
+            /*
+            // デバッグ
+            if (channel.icon != "") {
+                channel.name += ":wiki ○";
+            } else {
+                channel.name += ":wiki ×";
+            }
+            */
         }
     });
     return promise;

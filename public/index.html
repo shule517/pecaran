@@ -4,6 +4,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+    <style type="text/css">
+    <!--
+    img {
+      /*width: 300px;*/
+      /*border-radius: 100px;*/
+      /*
+      -webkit-border-radius: 300px;
+      -moz-border-radius: 300px;
+      */
+    }
+    -->
+    </style>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
     <script src="main.js"></script>
@@ -15,13 +27,16 @@
     <section class="container">
       <h1>Peca欄</h1>
       <input type="text" ng-model="name.name">
-      <div class="row"  ng-controller="mainCtrl">
+      <div class="row" ng-controller="mainCtrl" line-height="15px">
         <p>{{channels.length}} channels.</p>
-        <div class="col-md-2" height="200px" ng-repeat="channels in channels|orderBy:'-score'|filter:name">
-          <a href="{{channels.contactUrl}}" class="thumbnail">
-            <img src="{{channels.icon}}">
-            {{channels.name}}
+        <div class="col-md-6 media" ng-repeat="channels in channels|orderBy:'-icon'|filter:name">
+          <a href="{{channels.contactUrl}}" class="media-left">
+            <img class="img-circle media-object" src="{{channels.icon}}" width="60px" align="left">
           </a>
+          <div class="media-body">
+            <h4 class="media-heading">{{channels.name}}</h4>
+            <p font-weight="100">【{{channels.genre}}】{{channels.details}}</p>
+          </div>
         </div>
       </div>
     </section>
